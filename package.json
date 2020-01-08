@@ -1,4 +1,5 @@
 {
 	"name": "test",
-	"type": "module"
+	"type": "module",
+    "main": "./index.js"
 }
