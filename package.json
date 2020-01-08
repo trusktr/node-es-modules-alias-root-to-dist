@@ -1,7 +1,4 @@
 {
-	"name": "test-package",
-	"type": "module",
-	"exports": {
-		"./": "./dist/"
-	}
+	"name": "test",
+	"type": "module"
 }
