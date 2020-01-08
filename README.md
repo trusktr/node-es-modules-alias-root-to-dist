@@ -14,22 +14,27 @@ The following throws an error wen the file tries to import from `test-package/su
 node testBarImport.js
 ```
 
-You'll see an error like this:
+The output is similar to this:
 
 
 ```
-$ node testBarImport.js 
-/home/trusktr/test/testBarImport.js:1
-import {Bar} from 'test-package/subfolder/Bar.js'
-^^^^^^
+$ node --experimental-modules testFooImport.js 
+Foo
 
-SyntaxError: Cannot use import statement outside a module
-    at Module._compile (internal/modules/cjs/loader.js:892:18)
-    at Object.Module._extensions..js (internal/modules/cjs/loader.js:973:10)
-    at Module.load (internal/modules/cjs/loader.js:812:32)
-    at Function.Module._load (internal/modules/cjs/loader.js:724:14)
-    at Function.Module.runMain (internal/modules/cjs/loader.js:1025:10)
-    at internal/main/run_main_module.js:17:11
+$ node --experimental-modules testBarImport.js 
+(node:16752) ExperimentalWarning: The ESM module loader is experimental.
+internal/modules/esm/default_resolve.js:82
+  let url = moduleWrapResolve(specifier, parentURL);
+            ^
+
+Error: Cannot find module /home/trusktr/test/node_modules/test-package/dist/subfolder/subfolder/Bar.js imported from /home/trusktr/test/testBarImport.js
+    at Loader.resolve [as _resolve] (internal/modules/esm/default_resolve.js:82:13)
+    at Loader.resolve (internal/modules/esm/loader.js:73:33)
+    at Loader.getModuleJob (internal/modules/esm/loader.js:147:40)
+    at ModuleWrap.<anonymous> (internal/modules/esm/module_job.js:41:40)
+    at link (internal/modules/esm/module_job.js:40:36) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
 ```
 
 Related issue: https://github.com/nodejs/node/issues/14970
